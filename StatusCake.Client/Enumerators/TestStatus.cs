@@ -1,18 +1,18 @@
 ﻿namespace StatusCake.Client.Enumerators
 {
+  /// <summary>
+  /// Available status values
+  /// </summary>
+  public enum TestStatus
+  {
     /// <summary>
-    /// Available status values
+    /// Online
     /// </summary>
-    public enum TestStatus
-    {
-        /// <summary>
-        /// Online
-        /// </summary>
-        Up,
+    Up,
 
-        /// <summary>
-        /// Offline
-        /// </summary>
-        Down
-    }
+    /// <summary>
+    /// Offline
+    /// </summary>
+    Down
+  }
 }

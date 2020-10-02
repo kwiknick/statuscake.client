@@ -189,4 +189,4 @@ _Pvt_Extensions/
 ModelManifest.xml
 /.vs/
 *.nupkg
-/StatusCake.Client.Example
+/StatusCake.Client.Tests/App.config

@@ -43,50 +43,65 @@ namespace StatusCake.Client.Models
     /// </summary>
     private void Initialize()
     {
+      this.BasicPass = null;
+      this.BasicUser = null;
+      this.CheckRate = 300;
+      this.Confirmations = null;
+      this.ContactGroupID = null;
+      this.CustomHeader = null;
+      this.DisplayBranding = null;
+      this.DNSIP = null;
+      this.DNSServer = null;
+      this.DoNotFind = null;
+      this.EnableSSLAlert = null;
+      this.FindString = null;
+      this.FollowRedirect = null;
+      this.IncludeHeader = null;
+      this.LogoImageUrl = null;
+      this.NodeLocations = null;
+      this.Paused = null;
+      this.PingURL = null;
+      this.Port = null;
+      this.PostBody = null;
+      this.PostRaw = null;
+      this.PublicReporting = null;
+      this.StatusCodes = null;
+      this.TestID = null;
+      this.TestTags = null;
       this.TestType = null;
+      this.TestWithRealBrowser = null;
+      this.Timeout = 30;
+      this.TriggerRate = null;
+      this.UseJar = null;
+      this.UserAgent = null;
+      this.VirusCheckEnabled = null;
+      this.WebsiteHost = null;
       this.WebsiteName = null;
       this.WebsiteURL = null;
-      this.CheckRate = 300;
-      this.TestID = null;
-      this.Paused = null;
-      this.ContactGroupID = null;
-      this.Port = null;
-      this.NodeLocations = null;
-      this.Timeout = null;
-      this.PingURL = null;
-      this.Confirmations = null;
-      this.Public = null;
-      this.LogoImageUrl = null;
-      this.DisplayBranding = null;
-      this.WebsiteHost = null;
-      this.VirusCheckEnabled = null;
-      this.FindString = null;
-      this.DoNotFind = null;
-      this.TestWithRealBrowser = null;
-      this.TriggerRate = null;
-      this.Tags = null;
-      this.StatusCodes = null;
     }
 
     /// <summary>
-    /// The unique ID of the test
+    /// If BasicUser is set then this should be the password for the BasicUser
     /// </summary>
-    public int? TestID { get; set; }
+    public string BasicPass { get; set; }
 
     /// <summary>
-    /// True if the test is paused
+    /// A Basic Auth User account to use to login
     /// </summary>
-    public bool? Paused { get; set; }
+    public string BasicUser { get; set; }
 
     /// <summary>
-    /// The type of the test. Possible values: HTTP or TCP
+    /// The check rate in seconds at which the website will be tested.  Default: 300
     /// </summary>
-    public TestType? TestType { get; set; }
+    [Required(AllowEmptyStrings = false, ErrorMessage = "CheckRate is Required")]
+    [Range(0, 24000)]
+    public int CheckRate { get; set; }
 
     /// <summary>
-    /// The name of the test
+    /// The number of confirmation
     /// </summary>
-    public string WebsiteName { get; set; }
+    [Range(0, 10)]
+    public int? Confirmations { get; set; }
 
     /// <summary>
     /// Contains the contact group or null if the group is not set
@@ -94,72 +109,24 @@ namespace StatusCake.Client.Models
     public long? ContactGroupID { get; set; }
 
     /// <summary>
-    /// The URL of the website that will be tested
+    /// Custom HTTP header.  Must be supplied as JSON.
     /// </summary>
-    public string WebsiteURL { get; set; }
+    public string CustomHeader { get; set; }
 
     /// <summary>
-    /// The port where the website will be pinged
-    /// </summary>
-    public int? Port { get; set; }
-
-    /// <summary>
-    /// The comma separated list of locations where the test will be ran from
-    /// </summary>
-    public List<string> NodeLocations { get; set; }
-
-    /// <summary>
-    /// The timeout of the tests in seconds
-    /// </summary>
-    [Range(5, 100)]
-    public int? Timeout { get; set; }
-
-    /// <summary>
-    /// The URL to ping if a site goes down.
-    /// </summary>
-    public string PingURL { get; set; }
-
-    /// <summary>
-    /// The number of confirmaion
-    /// </summary>
-    [Range(0, 10)]
-    public int? Confirmations { get; set; }
-
-    /// <summary>
-    /// The check rate at which the website will be tested
-    /// </summary>
-    [Range(0, 24000)]
-    public int CheckRate { get; set; }
-
-    /// <summary>
-    /// Set to true to enable public reporting for the test
-    /// </summary>
-    public bool? Public { get; set; }
-
-    /// <summary>
-    /// The Url to the logo image in the public reporting
-    /// </summary>
-    public string LogoImageUrl { get; set; }
-
-    /// <summary>
-    /// Set to true to enable public branding on the public reporting page
+    /// Set to true to use branding (default) or false to disable public reporting branding. Default: true
     /// </summary>
     public bool? DisplayBranding { get; set; }
 
     /// <summary>
-    /// The website host
+    /// DNS Tests only.  IP to compare against WebsiteURL value.
     /// </summary>
-    public string WebsiteHost { get; set; }
+    public string DNSIP { get; set; }
 
     /// <summary>
-    /// Set to true to enable virus checking on the website
+    /// DNS Tests only.  Hostname or IP of DNS server to use.
     /// </summary>
-    public bool? VirusCheckEnabled { get; set; }
-
-    /// <summary>
-    /// The string that the test should result should contain
-    /// </summary>
-    public string FindString { get; set; }
+    public string DNSServer { get; set; }    
 
     /// <summary>
     /// Set to true to invert the FindString value
@@ -167,24 +134,133 @@ namespace StatusCake.Client.Models
     public bool? DoNotFind { get; set; }
 
     /// <summary>
-    /// Set to true ti test the website with a real browser
+    /// HTTP Tests only. If set to true, tests will send warnings if the SSL certificate is about to expire. Paid users only. Default: false
+    /// </summary>
+    public bool? EnableSSLAlert { get; set; }
+
+    /// <summary>
+    /// A string that should either be found or not found in the test response
+    /// </summary>
+    public string FindString { get; set; }
+
+    /// <summary>
+    /// HTTP Tests only. If enabled, our tests will follow redirects and log the status of the final page. Default: true
+    /// </summary>
+    public bool? FollowRedirect { get; set; }
+
+    /// <summary>
+    /// Include header content in string match search. Default: false
+    /// </summary>
+    public bool? IncludeHeader { get; set; }
+
+    /// <summary>
+    /// The Url to the logo image in the public reporting
+    /// </summary>
+    public string LogoImageUrl { get; set; }
+
+    /// <summary>
+    /// A List of locations where the test will be ran from (using the Node Location IDs) Default: Random Locations
+    /// </summary>
+    public List<string> NodeLocations { get; set; }
+
+    /// <summary>
+    /// If the Test is paused.  Default: false
+    /// </summary>
+    public bool? Paused { get; set; }
+
+    /// <summary>
+    /// The URL to ping if a site goes down.
+    /// </summary>
+    public string PingURL { get; set; }
+
+    /// <summary>
+    /// The port where the website will be pinged
+    /// </summary>
+    public int? Port { get; set; }
+
+    /// <summary>
+    /// HTTP Tests only. Converts JSON object to formdata. Changes HTTP method to POST
+    /// </summary>
+    public string PostBody { get; set; }
+
+    /// <summary>
+    /// HTTP Tests only. Sends string to server. Changes HTTP method to POST
+    /// </summary>
+    public string PostRaw { get; set; }
+
+    /// <summary>
+    /// Set to true to enable public reporting for the test. Default: false
+    /// </summary>
+    public bool? PublicReporting { get; set; }    
+
+    /// <summary>
+    /// The list of status codes that should trigger the error.  (On Update will replace, so send full list each time)
+    /// </summary>
+    public List<int> StatusCodes { get; set; }
+
+    /// <summary>
+    /// The unique ID of the test to update.  If not provided, a new test will be created.
+    /// </summary>
+    public int? TestID { get; set; }
+
+    /// <summary>
+    /// List of Tags for the test
+    /// </summary>
+    public List<string> TestTags { get; set; }
+
+    /// <summary>
+    /// The type of the test.
+    /// </summary>
+    [Required(AllowEmptyStrings = false, ErrorMessage = "TestType is Required")]
+    public TestType? TestType { get; set; }
+
+    /// <summary>
+    /// Set to true to test the website with a real browser
     /// </summary>
     public bool? TestWithRealBrowser { get; set; }
 
     /// <summary>
-    /// How many minutes to wait before sending an event
+    /// The timeout of the tests in seconds. Default: 30 Seconds
+    /// </summary>
+    [Range(5, 100)]
+    public int? Timeout { get; set; }
+
+    /// <summary>
+    /// How many minutes to wait before sending an event. Default: 5 Minutes
     /// </summary>
     [Range(0, 60)]
     public int? TriggerRate { get; set; }
 
     /// <summary>
-    /// The tags linked to this test
+    /// Set to true to enable the Cookie Jar. Required for some redirects. Default: false
     /// </summary>
-    public List<string> Tags { get; set; }
+    public bool? UseJar { get; set; }
 
     /// <summary>
-    /// The list of status codes that should trigger the error
+    /// The User Agent you want to send with the test
     /// </summary>
-    public List<int> StatusCodes { get; set; }
+    public string UserAgent { get; set; }
+
+    /// <summary>
+    /// Set to true to enable virus checking on the website
+    /// </summary>
+    public bool? VirusCheckEnabled { get; set; }
+
+    /// <summary>
+    /// The website host
+    /// </summary>
+    public string WebsiteHost { get; set; }
+
+    /// <summary>
+    /// The name of the Test
+    /// </summary>
+    [Required(AllowEmptyStrings = false, ErrorMessage = "WebsiteName is Required")]
+    public string WebsiteName { get; set; }
+
+    /// <summary>
+    /// The URL of the website that will be tested
+    /// </summary>
+    [Required(AllowEmptyStrings = false, ErrorMessage = "WebsiteURL is Required")]
+    public string WebsiteURL { get; set; }    
   }
 }

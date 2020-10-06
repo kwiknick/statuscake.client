@@ -1,4 +1,5 @@
 ﻿using StatusCake.Client.Enumerators;
+using StatusCake.Client.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace StatusCake.Client.Models
   /// <summary>
   /// The details of a test
   /// </summary>
-  public class TestDetails
+  public class TestDetails : ITestDetails
   {
     /// <summary>
     /// The unique ID of the test
@@ -82,7 +83,7 @@ namespace StatusCake.Client.Models
     /// <summary>
     /// The URL of the logo image for public reporting
     /// </summary>
-    public string FinalEndpoint { get; set; }    
+    public string FinalEndpoint { get; set; }
 
     /// <summary>
     /// User entered value for Website Host
@@ -102,7 +103,7 @@ namespace StatusCake.Client.Models
     /// <summary>
     /// If a string should be found or not be ound in the result
     /// </summary>
-    public string DoNotFind { get; set; }
+    public bool DoNotFind { get; set; }
 
     /// <summary>
     /// The last time the test was ran
@@ -142,7 +143,7 @@ namespace StatusCake.Client.Models
     /// <summary>
     /// 
     /// </summary>
-    public string Sensitive { get; set; }
+    public bool Sensitive { get; set; }
 
     /// <summary>
     /// If SSLWarning is Enabled

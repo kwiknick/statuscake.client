@@ -21,5 +21,10 @@ namespace StatusCake.Client.Models
     /// A human readable response message from the API
     /// </summary>
     public string Message { get; set; }
+
+    /// <summary>
+    /// A human readable response message from the API
+    /// </summary>
+    public int? InsertID { get; set; }
   }
 }

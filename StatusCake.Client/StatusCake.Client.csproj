@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>net45;net46;netstandard2.0;netcoreapp2.0;netcoreapp2.1</TargetFrameworks>
-    <AssemblyVersion>1.3.6.0</AssemblyVersion>
-    <FileVersion>1.3.6.0</FileVersion>
+    <AssemblyVersion>1.3.7.0</AssemblyVersion>
+    <FileVersion>1.3.7.0</FileVersion>
     <Description>A simple extended .NET client for communication with the StatusCake website monitoring service API.</Description>
     <Copyright>Copyright © 2020</Copyright>
-    <Version>1.3.6</Version>
+    <Version>1.3.7</Version>
     <PackageId>StatusCake.Client.Revised</PackageId>
     <Product>StatusCake.Client.Extended</Product>
     <Authors>Tamas Toth, Dejan Pelzel, Daedalus Icaru, Nicholas Willard</Authors>
